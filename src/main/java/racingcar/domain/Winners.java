@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Winners {
+    private static final int FIRST_WINNER_INDEX = 0;
+
     private final List<Car> winners;
 
     public Winners(List<Car> cars) {
@@ -25,8 +27,8 @@ public class Winners {
     private void decide(List<Car> cars) {
         cars.sort(Comparator.reverseOrder());
 
-        Car firstWinner = cars.get(0);
-        int carIndex = 0;
+        int carIndex = FIRST_WINNER_INDEX;
+        Car firstWinner = cars.get(carIndex);
         while (carIndex < cars.size() && IsNextCarWinner(cars.get(carIndex), firstWinner)) {
             winners.add(cars.get(carIndex));
             carIndex++;

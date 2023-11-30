@@ -4,11 +4,10 @@ import racingcar.view.OutputView;
 
 public class Car implements Comparable<Car> {
     private final CarName carName;
-    private int movingDistance;
+    private int movingDistance = 0;
 
     public Car(String carName) {
         this.carName = new CarName(carName);
-        this.movingDistance = 0;
     }
 
     public String getCarName() {

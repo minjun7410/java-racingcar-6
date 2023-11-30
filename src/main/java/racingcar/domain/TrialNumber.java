@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.view.OutputView;
 
 public class TrialNumber {
+    private static final String TRIAL_NUMBER_ERROR = "시도 횟수는 정수를 입력해주세요.";
     private final int trialNumber;
 
     public TrialNumber(String trialNumberInput) {
@@ -26,6 +27,6 @@ public class TrialNumber {
         if (trialNumber.matches("\\d*")) {
             return;
         }
-        throw new IllegalArgumentException("시도 횟수는 정수를 입력해주세요.");
+        throw new IllegalArgumentException(TRIAL_NUMBER_ERROR);
     }
 }
