@@ -3,6 +3,7 @@ package racingcar.view;
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.domain.Cars;
 import racingcar.domain.TrialNumber;
+import racingcar.dto.TrialNumberDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +11,12 @@ import java.util.List;
 public class InputView {
     private static final String TRIAL_NUMBER_INPUT_TEXT = "시도할 회수는 몇회인가요?\n";
     private static final String CAR_NAME_INPUT_TEXT = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n";
+    private static final String TRIAL_NUMBER_ERROR = "시도 횟수는 정수를 입력해주세요.";
 
-    public TrialNumber getTrialNumber() {
+    public TrialNumberDTO getTrialNumber() {
         System.out.print(TRIAL_NUMBER_INPUT_TEXT);
-        String trialNumberInput = Console.readLine().trim();
-        return new TrialNumber(trialNumberInput);
+        int trialNumber = convertToInteger(Console.readLine().trim());
+        return new TrialNumberDTO(trialNumber);
     }
 
     public Cars getCarsFromUser() {
@@ -38,5 +40,17 @@ public class InputView {
 
     public void closeConsole() {
         Console.close();
+    }
+
+    private int convertToInteger(String trialNumberInput) {
+        validateNotInteger(trialNumberInput);
+        return Integer.parseInt(trialNumberInput);
+    }
+
+    private void validateNotInteger(String trialNumber) {
+        if (trialNumber.matches("\\d*")) {
+            return;
+        }
+        throw new IllegalArgumentException(TRIAL_NUMBER_ERROR);
     }
 }

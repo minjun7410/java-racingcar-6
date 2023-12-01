@@ -12,7 +12,7 @@ public class Game {
     }
     public void playGame() {
         Cars cars = inputView.getCarsFromUser();
-        TrialNumber trialNumber = inputView.getTrialNumber();
+        TrialNumber trialNumber = new TrialNumber(inputView.getTrialNumber());
         trialNumber.playTurnAsMuchAsTrialNumber(cars);
         Winners winners = cars.getWinners();
         winners.print();
