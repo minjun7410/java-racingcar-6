@@ -17,8 +17,7 @@ public class Game {
     public void play() {
         Cars cars = inputView.getCarsFromUser();
         proceed(inputView.getTrialNumber(), cars);
-        Winners winners = cars.getWinners();
-        winners.print();
+        printWinner(cars);
     }
 
     private void proceed(TrialNumberDTO trialNumber, Cars cars) {
@@ -29,5 +28,8 @@ public class Game {
         }
     }
 
-
+    private void printWinner(Cars cars) {
+        Winners winners = cars.getWinners();
+        outputView.printWinnersName(winners.getWinnersName());
+    }
 }

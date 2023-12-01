@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import racingcar.dto.WinnerNameDTO;
 import racingcar.view.OutputView;
 
 import java.util.ArrayList;
@@ -16,12 +17,12 @@ public class Winners {
         decide(cars);
     }
 
-    public void print() {
-        List<String> winnerNameList = new ArrayList<>();
+    public List<WinnerNameDTO> getWinnersName() {
+        List<WinnerNameDTO> winnerNameList = new ArrayList<>();
         for (Car winner : winners) {
-            winnerNameList.add(winner.getCarName());
+            winnerNameList.add(new WinnerNameDTO(winner.getCarName()));
         }
-        OutputView.printWinners(winnerNameList);
+        return winnerNameList;
     }
 
     private void decide(List<Car> cars) {

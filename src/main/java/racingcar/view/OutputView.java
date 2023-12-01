@@ -1,16 +1,20 @@
 package racingcar.view;
 
 import racingcar.domain.CarResult;
+import racingcar.dto.WinnerNameDTO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String FIRST_SHOWN_RESULT_TEXT = "실행 결과\n";
     private static final String FIRST_SHOWN_WINNER_TEXT = "최종 우승자 : ";
 
-    public void printWinners(List<String> winners) {
+    public void printWinnersName(List<WinnerNameDTO> winners) {
         printFirstShownWinnerText();
-        System.out.println(String.join(", ", winners));
+        System.out.println(winners.stream()
+                        .map(WinnerNameDTO::getWinnerName)
+                        .collect(Collectors.joining(", ")));
     }
 
     public void printFirstShownWinnerText() {
@@ -21,6 +25,7 @@ public class OutputView {
         for (CarResult result : results) {
             printCarMovingDistance(result);
         }
+        System.out.println();
     }
 
     private void printCarMovingDistance(CarResult result) {

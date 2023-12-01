@@ -2,7 +2,6 @@ package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import racingcar.domain.Cars;
-import racingcar.domain.TrialNumber;
 import racingcar.dto.TrialNumberDTO;
 
 import java.util.ArrayList;
