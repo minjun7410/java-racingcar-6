@@ -1,7 +1,10 @@
 package racingcar.domain;
 
+import racingcar.dto.TrialNumberDTO;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.List;
 
 public class Game {
     private final InputView inputView;
@@ -10,11 +13,21 @@ public class Game {
         this.inputView = inputView;
         this.outputView = outputView;
     }
-    public void playGame() {
+
+    public void play() {
         Cars cars = inputView.getCarsFromUser();
-        TrialNumber trialNumber = new TrialNumber(inputView.getTrialNumber());
-        trialNumber.playTurnAsMuchAsTrialNumber(cars);
+        proceed(inputView.getTrialNumber(), cars);
         Winners winners = cars.getWinners();
         winners.print();
     }
+
+    private void proceed(TrialNumberDTO trialNumber, Cars cars) {
+        outputView.printFirstShownResultText();
+        for (int trial = 0; trial < trialNumber.getTrialNumber(); trial++) {
+            List<CarResult> carResults = cars.playTurn();
+            outputView.printTurnResult(carResults);
+        }
+    }
+
+
 }

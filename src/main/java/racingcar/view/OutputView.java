@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.domain.CarResult;
+
 import java.util.List;
 
 public class OutputView {
@@ -15,9 +17,15 @@ public class OutputView {
         System.out.print(FIRST_SHOWN_WINNER_TEXT);
     }
 
-    public void printMovingDistance(Object carName, int movingDistance) {
-        System.out.print(carName + " : ");
-        for (int moved = 0; moved < movingDistance; moved++) {
+    public void printTurnResult(List<CarResult> results) {
+        for (CarResult result : results) {
+            printCarMovingDistance(result);
+        }
+    }
+
+    private void printCarMovingDistance(CarResult result) {
+        System.out.print(result.getCarName() + " : ");
+        for (int moved = 0; moved < result.getMovingDistance(); moved++) {
             System.out.print("-");
         }
         System.out.println();

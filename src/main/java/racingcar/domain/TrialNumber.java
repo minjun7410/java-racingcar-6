@@ -1,7 +1,9 @@
 package racingcar.domain;
 
 import racingcar.dto.TrialNumberDTO;
-import racingcar.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrialNumber {
     private final int trialNumber;
@@ -10,12 +12,11 @@ public class TrialNumber {
         this.trialNumber = trialNumberDTO.getTrialNumber();
     }
 
-    public void playTurnAsMuchAsTrialNumber(Cars cars) {
-        OutputView.printFirstShownResultText();
+    public List<CarResult> playTurnAsMuchAsTrialNumber(Cars cars) {
+        List<CarResult> carResults = new ArrayList<>();
         for (int trial = 0; trial < trialNumber; trial++) {
-            cars.playTurn();
+            carResults.add(cars.playTurn());
         }
+        return carResults;
     }
-
-
 }

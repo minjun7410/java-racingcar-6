@@ -14,11 +14,13 @@ public class Cars {
         addCarInCars(carNameList);
     }
 
-    public void playTurn() {
+    public List<CarResult> playTurn() {
+        List<CarResult> carResults = new ArrayList<>();
         for (Car car : cars) {
             car.moveRandomly();
-            car.printPresentMovingDistance();
+            carResults.add(car.getMoveResult());
         }
+        return carResults;
     }
 
     public Winners getWinners() {

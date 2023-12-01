@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import racingcar.view.OutputView;
-
 public class Car implements Comparable<Car> {
     private final CarName carName;
     private int movingDistance = 0;
@@ -14,8 +12,8 @@ public class Car implements Comparable<Car> {
         return carName.toString();
     }
 
-    public void printPresentMovingDistance() {
-        OutputView.printMovingDistance(carName, movingDistance);
+    public CarResult getMoveResult() {
+        return new CarResult(carName.toString(), movingDistance);
     }
 
     public int moveRandomly() {
