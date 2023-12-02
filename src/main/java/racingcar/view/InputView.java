@@ -35,10 +35,6 @@ public class InputView {
         return trimInputList;
     }
 
-    public void closeConsole() {
-        Console.close();
-    }
-
     private int convertToInteger(String trialNumberInput) {
         validateNotInteger(trialNumberInput);
         return Integer.parseInt(trialNumberInput);

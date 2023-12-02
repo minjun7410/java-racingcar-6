@@ -2,6 +2,7 @@ package racingcar;
 
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Cars;
+import racingcar.dto.TrialNumberDTO;
 import racingcar.view.InputView;
 
 import java.io.ByteArrayInputStream;
@@ -9,17 +10,15 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class InputViewTest {
-
-    void setSystemInToCustomInput(String customInput) {
-        System.setIn(new ByteArrayInputStream(customInput.getBytes()));
-        InputView.closeConsole();
+public class InputTest {
+    @Test
+    void 올바른_시도횟수_입력_테스트() {
+        assertThatNoException().isThrownBy(() -> new TrialNumberDTO(2));
     }
 
     @Test
-    void 올바른_시도횟수_입력_테스트() {
-        setSystemInToCustomInput("5");
-        assertThatNoException().isThrownBy(InputView::getTrialNumber);
+    void 올바르지_않은_시도횟수_입력_테스트() {
+        assertThatNoException().isThrownBy(() -> new TrialNumberDTO(-2));
     }
 
     @Test
