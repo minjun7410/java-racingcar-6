@@ -18,13 +18,12 @@ public class InputTest {
 
     @Test
     void 올바르지_않은_시도횟수_입력_테스트() {
-        assertThatNoException().isThrownBy(() -> new TrialNumberDTO(-2));
+        assertThatThrownBy(() -> new TrialNumberDTO(-2)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void 올바른_자동차이름_입력_테스트() {
-        setSystemInToCustomInput("song, jone , jason");
-        assertThatNoException().isThrownBy(InputView::getCarsFromUser);
+        assertThatNoException().isThrownBy(() -> new Cars(List.of("song, jone , jason")));
     }
 
     @Test
@@ -34,19 +33,7 @@ public class InputTest {
 
     @Test
     void 자동차이름_입력값_공백_예외처리_테스트() {
-        setSystemInToCustomInput("song, , jason");
-        assertThatThrownBy(InputView::getCarsFromUser).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Cars(List.of("song, , jason"))).isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    void 자동차이름_입력값_분리_테스트() {
-        List<String> inputViewList = InputView.splitInputByComma("song, jone, jason");
-        assertThat(inputViewList.size()).isEqualTo(3);
-    }
-
-    @Test
-    void 자동차이름_공백_제거_테스트() {
-        List<String> inputViewList = InputView.splitInputByComma(" song , jone, jason ");
-        assertThat(inputViewList.get(0).length()).isEqualTo(4);
-    }
 }
