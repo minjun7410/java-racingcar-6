@@ -1,7 +1,6 @@
 package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import racingcar.domain.Cars;
 import racingcar.dto.TrialNumberDTO;
 
 import java.util.ArrayList;
@@ -18,13 +17,12 @@ public class InputView {
         return new TrialNumberDTO(trialNumber);
     }
 
-    public Cars getCarsFromUser() {
+    public List<String> getCarNamesFromUser() {
         System.out.print(CAR_NAME_INPUT_TEXT);
-        List<String> carNames = splitInputByComma(Console.readLine());
-        return new Cars(carNames);
+        return splitInputByComma(Console.readLine());
     }
 
-    public List<String> splitInputByComma(String input) {
+    private List<String> splitInputByComma(String input) {
         String[] splitInputArray = input.split(",");
         return trimInputOneByOne(splitInputArray);
     }

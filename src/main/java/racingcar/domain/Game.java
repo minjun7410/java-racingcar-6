@@ -15,7 +15,8 @@ public class Game {
     }
 
     public void play() {
-        Cars cars = inputView.getCarsFromUser();
+        List<String> carNames = inputView.getCarNamesFromUser();
+        Cars cars = new Cars(carNames);
         proceed(inputView.getTrialNumber(), cars);
         printWinner(cars);
     }
