@@ -7,7 +7,7 @@ import java.util.List;
 public class CarName {
     private static final String CARNAME_SIZE_ERROR = "자동차의 이름은 5자를 넘어갈 수 없습니다.";
     private static final String CARNAME_BRANK_ERROR = "자동차의 이름은 공백이 될 수 없습니다.";
-    String carName;
+    private final String carName;
 
     public CarName(String carName) {
         validateCarNameLengthExceed(carName);

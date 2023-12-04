@@ -1,7 +1,6 @@
 package racingcar.domain;
 
 import racingcar.dto.WinnerNameDTO;
-import racingcar.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -14,10 +13,10 @@ public class Winners {
 
     public Winners(List<Car> cars) {
         winners = new ArrayList<>();
-        decide(cars);
+        judge(cars);
     }
 
-    public List<WinnerNameDTO> getWinnersName() {
+    public List<WinnerNameDTO> getNames() {
         List<WinnerNameDTO> winnerNameList = new ArrayList<>();
         for (Car winner : winners) {
             winnerNameList.add(new WinnerNameDTO(winner.getCarName()));
@@ -25,18 +24,18 @@ public class Winners {
         return winnerNameList;
     }
 
-    private void decide(List<Car> cars) {
+    private void judge(List<Car> cars) {
         cars.sort(Comparator.reverseOrder());
 
         int carIndex = FIRST_WINNER_INDEX;
         Car firstWinner = cars.get(carIndex);
-        while (carIndex < cars.size() && IsNextCarWinner(cars.get(carIndex), firstWinner)) {
+        while (carIndex < cars.size() && isNextCarWinner(cars.get(carIndex), firstWinner)) {
             winners.add(cars.get(carIndex));
             carIndex++;
         }
     }
 
-    private boolean IsNextCarWinner(Car car, Car winner) {
+    private boolean isNextCarWinner(Car car, Car winner) {
         return (car.compareTo(winner) == 0);
     }
 

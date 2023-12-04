@@ -31,6 +31,6 @@ public class Game {
 
     private void printWinner(Cars cars) {
         Winners winners = cars.getWinners();
-        outputView.printWinnersName(winners.getWinnersName());
+        outputView.printWinnersName(winners.getNames());
     }
 }
